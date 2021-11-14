@@ -37,6 +37,7 @@ class PythonFile:
                 dest.write(self._content)
             print(f"{py3FileName} created!")
 
+
 class Rules:
     def __init__(self):
         self._load_rules()
