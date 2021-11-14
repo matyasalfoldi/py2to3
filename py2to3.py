@@ -12,11 +12,16 @@ import yaml
 
 
 def _main():
-    if len(sys.argv) != 2:
-        print("Usage: py2to3.py <py2file>")
+    if (len(sys.argv) != 2 or
+        sys.argv[1] == "-h" or sys.argv[1] == "--help"):
+        _help()
     pyFile = PythonFile(sys.argv[1])
     pyFile.create_py3_file()
 
+
+def _help():
+    print("Usage: py2to3.py <py2file>")
+    sys.exit(0)
 
 class PythonFile:
     """
