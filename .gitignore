@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Generated py3 code
-*.p3
+*.py3

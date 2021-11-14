@@ -18,7 +18,7 @@ class PythonFile:
     def create_py3_file(self):
         self._load_content()
         self._apply_rules()
-        self._write_content_to_file(self._fileName + "3")
+        self._write_to_py3_file()
 
     def _load_content(self):
         if not hasattr(self, '_content'):
@@ -28,29 +28,28 @@ class PythonFile:
     def _apply_rules(self):
         self._content = Rules().apply(self._content)
 
-    def _write_content_to_file(self, fileName):
-        if Path(fileName).is_file():
-            print("File already exists, aborting!") 
+    def _write_to_py3_file(self):
+        py3FileName = self._fileName + "3"
+        if Path(py3FileName).is_file():
+            sys.exit(f"{py3FileName} already exists, aborting!")
         else:
-            with open(fileName, "w") as dest:
+            with open(py3FileName, "w") as dest:
                 dest.write(self._content)
-            print(f"{fileName} created!")
+            print(f"{py3FileName} created!")
 
 class Rules:
     def __init__(self):
-        self.rules = self._load_rules()
+        self._load_rules()
 
     def _load_rules(self):
         try:
             with open("rules.yaml") as rules:
                 try:
-                    return yaml.safe_load(rules)
+                    self.rules = yaml.safe_load(rules)
                 except yaml.YAMLError as exc:
-                    print(exc)
-                    sys.exit(1)
+                    sys.exit(str(exc))
         except FileNotFoundError as exc:
-            print(exc)
-            sys.exit(1)
+            sys.exit(str(exc))
 
     def apply(self, content):
         for ruleName, rule in self.rules.items():
@@ -60,4 +59,7 @@ class Rules:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SystemExit as exc:
+        print(exc)
