@@ -1,0 +1,9 @@
+xrange:
+  regex: 'xrange'
+  replace: 'range'
+print:
+  regex: 'print\s*["''](.*)["''](.*)'
+  replace: 'print("\1"\2)'
+except:
+  regex: '(except\s+\w+\s*),(\s*\w+\s*:)'
+  replace: '\1 as \2'
