@@ -2,8 +2,11 @@ xrange:
   regex: 'xrange'
   replace: 'range'
 print:
-  regex: 'print\s*["''](.*)["''](.*)'
+  regex: 'print\s*["''](.*)["''](.*)$'
   replace: 'print("\1"\2)'
+print2:
+  regex: 'print\s*([^(\n]*[^)\n]*)\s*$'
+  replace: 'print(\1)'
 except:
-  regex: '(except\s+\w+\s*),(\s*\w+\s*:)'
+  regex: '(except\s+\w+\s*),(\s*\w+\s*:)\s*$'
   replace: '\1 as \2'

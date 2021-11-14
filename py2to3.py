@@ -1,5 +1,5 @@
 """
-Usage: py2to3.py <py2file>
+Usage: python py2to3.py <py2file>
 Classes:
 - PythonFile: Applies the rules from rules.yaml to given python 2 file,
   and creates a <filename>.py3 file.
@@ -20,7 +20,7 @@ def _main():
 
 
 def _help():
-    print("Usage: py2to3.py <py2file>")
+    print("Usage: python py2to3.py <py2file>")
     sys.exit(0)
 
 class PythonFile:
